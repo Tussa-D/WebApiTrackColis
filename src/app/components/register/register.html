@@ -1,0 +1,68 @@
+<div class="register-container">
+  <h2>Register</h2>
+  
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <!-- Username -->
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input 
+        type="text" 
+        id="username"
+        name="username"
+        [(ngModel)]="model.username" 
+        required
+        minlength="3"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input 
+        type="email" 
+        id="email"
+        name="email"
+        [(ngModel)]="model.email" 
+        required
+        email
+        class="form-control"
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input 
+        type="password" 
+        id="password"
+        name="password"
+        [(ngModel)]="model.password" 
+        required
+        minlength="6"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Submit Button -->
+    <button 
+      type="submit" 
+      [disabled]="!registerForm.valid || isLoading"
+      class="btn btn-primary"
+    >
+      {{ isLoading ? 'Loading...' : 'Register' }}
+    </button>
+  </form>
+
+  <p>Already have an account? <a routerLink="/login">Login here</a></p>
+</div>

@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="header">
+    <h2>Gestion des Utilisateurs Colis</h2>
+    <button (click)="createNew()" class="btn btn-primary">
+      ➕ Nouveau
+    </button>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading">
+    Chargement...
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Table -->
+  <div *ngIf="!isLoading && !errorMessage" class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Téléphone</th>
+          <th>CNI</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersColis">
+          <td>{{ user.idUserColis }}</td>
+          <td>{{ user.nom }}</td>
+          <td>{{ user.prenom }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.telephone }}</td>
+          <td>{{ user.cni }}</td>
+          <td>
+            <span class="badge" [class.badge-active]="user.statut === 'Actif'">
+              {{ user.statut }}
+            </span>
+          </td>
+          <td>
+            <button (click)="editUser(user.idUserColis)" class="btn btn-sm btn-warning">
+              ✏️ Modifier
+            </button>
+            <button (click)="deleteUser(user.idUserColis)" class="btn btn-sm btn-danger">
+              🗑️ Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="usersColis.length === 0" class="no-data">
+      Aucun utilisateur trouvé. Cliquez sur "Nouveau" pour en créer un.
+    </div>
+  </div>
+</div>

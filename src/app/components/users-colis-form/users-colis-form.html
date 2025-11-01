@@ -1,0 +1,133 @@
+<div class="container">
+  <h2>{{ isEditMode ? 'Modifier' : 'Créer' }} un Utilisateur Colis</h2>
+
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <!-- Nom -->
+    <div class="form-group">
+      <label for="nom">Nom *</label>
+      <input 
+        type="text" 
+        id="nom"
+        name="nom"
+        [(ngModel)]="model.nom" 
+        required
+        maxlength="80"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Prénom -->
+    <div class="form-group">
+      <label for="prenom">Prénom *</label>
+      <input 
+        type="text" 
+        id="prenom"
+        name="prenom"
+        [(ngModel)]="model.prenom" 
+        required
+        maxlength="80"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email *</label>
+      <input 
+        type="email" 
+        id="email"
+        name="email"
+        [(ngModel)]="model.email" 
+        required
+        email
+        maxlength="80"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Téléphone -->
+    <div class="form-group">
+      <label for="telephone">Téléphone *</label>
+      <input 
+        type="tel" 
+        id="telephone"
+        name="telephone"
+        [(ngModel)]="model.telephone" 
+        required
+        maxlength="15"
+        class="form-control"
+      />
+    </div>
+
+    <!-- CNI -->
+    <div class="form-group">
+      <label for="cni">CNI *</label>
+      <input 
+        type="text" 
+        id="cni"
+        name="cni"
+        [(ngModel)]="model.cni" 
+        required
+        maxlength="20"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Adresse -->
+    <div class="form-group">
+      <label for="adresse">Adresse *</label>
+      <textarea 
+        id="adresse"
+        name="adresse"
+        [(ngModel)]="model.adresse" 
+        required
+        maxlength="150"
+        rows="3"
+        class="form-control"
+      ></textarea>
+    </div>
+
+    <!-- Statut -->
+    <div class="form-group">
+      <label for="statut">Statut *</label>
+      <select 
+        id="statut"
+        name="statut"
+        [(ngModel)]="model.statut" 
+        required
+        class="form-control"
+      >
+        <option value="Actif">Actif</option>
+        <option value="Inactif">Inactif</option>
+      </select>
+    </div>
+
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        [disabled]="!userForm.valid || isLoading"
+        class="btn btn-primary"
+      >
+        {{ isLoading ? 'Enregistrement...' : (isEditMode ? 'Mettre à jour' : 'Créer') }}
+      </button>
+      <button 
+        type="button"
+        (click)="cancel()"
+        class="btn btn-secondary"
+      >
+        Annuler
+      </button>
+    </div>
+  </form>
+</div>
