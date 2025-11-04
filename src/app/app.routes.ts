@@ -1,34 +1,35 @@
 import { Routes } from '@angular/router';
+import { WelcomeComponent } from './components/welcome/welcome';
 import { LoginComponent } from './components/login/login';
 import { RegisterComponent } from './components/register/register';
+import { LayoutComponent } from './components/layout/layout';
 import { DashboardComponent } from './components/dashboard/dashboard';
 import { UsersColisListComponent } from './components/users-colis-list/users-colis-list';
 import { UsersColisFormComponent } from './components/users-colis-form/users-colis-form';
 import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // Page d'accueil publique
+  { path: '', component: WelcomeComponent },
+  
+  // Authentification (sans layout)
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { 
-    path: 'dashboard', 
-    component: DashboardComponent,
-    canActivate: [authGuard]
-  },
+  
+  // Routes protégées AVEC layout (sidebar + header)
   {
-    path: 'users-colis',
-    component: UsersColisListComponent,
-    canActivate: [authGuard]
+    path: '',
+    component: LayoutComponent,  // ✅ Layout parent
+    canActivate: [authGuard],
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'users-colis', component: UsersColisListComponent },
+      { path: 'users-colis/create', component: UsersColisFormComponent },
+      { path: 'users-colis/edit/:id', component: UsersColisFormComponent }
+    ]
   },
-  {
-    path: 'users-colis/create',
-    component: UsersColisFormComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'users-colis/edit/:id',
-    component: UsersColisFormComponent,
-    canActivate: [authGuard]
-  },
-  { path: '**', redirectTo: '/login' }
+  
+  // 404
+  { path: '**', redirectTo: '' }
 ];
+

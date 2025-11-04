@@ -1,68 +1,63 @@
-<div class="register-container">
-  <h2>Register</h2>
-  
-  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-    <!-- Username -->
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input 
-        type="text" 
-        id="username"
+<div class="flex min-h-screen items-center justify-center bg-gray-100">
+  <div class="bg-white shadow-lg rounded-2xl p-8 w-96">
+    <h2 class="text-2xl font-bold mb-6 text-center">Inscription</h2>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="flex flex-col space-y-4">
+      <input
+        type="text"
+        [(ngModel)]="model.username"
         name="username"
-        [(ngModel)]="model.username" 
+        placeholder="Nom d'utilisateur"
         required
         minlength="3"
-        class="form-control"
+        class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        [disabled]="isLoading"
       />
-    </div>
 
-    <!-- Email -->
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input 
-        type="email" 
-        id="email"
+      <input
+        type="email"
+        [(ngModel)]="model.email"
         name="email"
-        [(ngModel)]="model.email" 
+        placeholder="Adresse e-mail"
         required
         email
-        class="form-control"
+        class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        [disabled]="isLoading"
       />
-    </div>
 
-    <!-- Password -->
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input 
-        type="password" 
-        id="password"
+      <input
+        type="password"
+        [(ngModel)]="model.password"
         name="password"
-        [(ngModel)]="model.password" 
+        placeholder="Mot de passe"
         required
         minlength="6"
-        class="form-control"
+        class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        [disabled]="isLoading"
       />
-    </div>
 
-    <!-- Success Message -->
-    <div *ngIf="successMessage" class="alert alert-success">
-      {{ successMessage }}
-    </div>
+      <!-- Message de succès -->
+      <div *ngIf="successMessage" class="bg-green-100 text-green-600 p-3 rounded-lg text-sm">
+        ✅ {{ successMessage }}
+      </div>
 
-    <!-- Error Message -->
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
-    </div>
+      <!-- Message d'erreur -->
+      <div *ngIf="errorMessage" class="bg-red-100 text-red-600 p-3 rounded-lg text-sm">
+        ⚠️ {{ errorMessage }}
+      </div>
 
-    <!-- Submit Button -->
-    <button 
-      type="submit" 
-      [disabled]="!registerForm.valid || isLoading"
-      class="btn btn-primary"
-    >
-      {{ isLoading ? 'Loading...' : 'Register' }}
-    </button>
-  </form>
+      <button
+        type="submit"
+        [disabled]="!registerForm.valid || isLoading"
+        class="bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition disabled:bg-gray-400"
+      >
+        {{ isLoading ? 'Inscription...' : 'S\'inscrire' }}
+      </button>
+    </form>
 
-  <p>Already have an account? <a routerLink="/login">Login here</a></p>
+    <p class="text-center text-sm mt-4">
+      Déjà inscrit ?
+      <a routerLink="/login" class="text-blue-600 hover:underline">Se connecter</a>
+    </p>
+  </div>
 </div>

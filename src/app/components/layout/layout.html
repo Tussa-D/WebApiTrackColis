@@ -1,0 +1,64 @@
+<div class="flex h-screen bg-white-100">
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-sky-500/20 shadow-md flex flex-col">
+    <!-- LOGO -->
+    <div class="p-6">
+      <h1 class="text-2xl font-bold text-blue-600">📦 EasyColis</h1>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="flex-1 px-4 py-6 space-y-3">
+      <a routerLink="/dashboard" 
+         routerLinkActive="!bg-blue-700"
+         [routerLinkActiveOptions]="{exact: true}"
+         class="bg-sky-500/90 block px-4 py-2 rounded-lg text-white font-medium hover:bg-blue-700 transition flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+          <path fill="#ffffff" d="M128 496H48V304h80Zm224 0h-80V208h80Zm112 0h-80V96h80Zm-224 0h-80V16h80Z"/>
+        </svg>
+        Dashboard
+      </a>
+      
+      <a routerLink="/users-colis" 
+         routerLinkActive="!bg-blue-700"
+         class="bg-sky-500/90 block px-4 py-2 rounded-lg text-white font-medium hover:bg-blue-700 transition flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <path fill="#ffffff" d="m20.765 7.982l.022.19l.007.194v7.268a2.5 2.5 0 0 1-1.099 2.07l-.15.095l-6.295 3.634l-.124.067l-.126.06v-8.99z" class="duoicon-secondary-layer" opacity=".3"/>
+          <path fill="#ffffff" d="m13.25 2.567l6.294 3.634q.076.044.148.092L12 10.838L4.308 6.293a3 3 0 0 1 .148-.092l6.294-3.634a2.5 2.5 0 0 1 2.5 0" class="duoicon-primary-layer"/>
+          <path fill="#ffffff" d="M3.235 7.982L11 12.571v8.988a2 2 0 0 1-.25-.126l-6.294-3.634a2.5 2.5 0 0 1-1.25-2.165V8.366q0-.195.03-.384z" class="duoicon-secondary-layer" opacity=".3"/>
+        </svg>
+        Gestion des Colis
+      </a>
+    </nav>
+
+    <!-- FOOTER SIDEBAR -->
+    <div class="px-4 py-6">
+      <button
+        (click)="logout()"
+        class="w-full bg-sky-500/90 text-white py-2 rounded-lg font-medium hover:bg-red-600 transition flex justify-center gap-2"
+      >
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+        </svg>
+        Déconnexion
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="flex-1 flex flex-col">
+    <!-- HEADER -->
+    <header class="flex justify-end items-center bg-sky-500/90 shadow-sm px-6 py-4">
+      <span class="text-white font-medium flex items-center gap-2">
+        Bonjour, {{ username }}
+        <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+        </svg>
+      </span>
+    </header>
+
+    <!-- MAIN BODY - C'est ici que vos pages s'affichent -->
+    <main class="flex-1 p-6 overflow-y-auto bg-gray-50">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

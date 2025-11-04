@@ -1,15 +1,48 @@
-<div class="dashboard-container">
-  <h2>Dashboard</h2>
+<div>
+  <h2 class="text-3xl font-bold text-blue-600 mb-6">Dashboard</h2>
   
-  <div class="user-info" *ngIf="user">
-    <p><strong>Bienvenue, {{ user.username }}!</strong></p>
+  <p class="text-gray-600 mb-8">
+    Bienvenue sur votre espace EasyColis. Gérez vos colis facilement.
+  </p>
+
+  <!-- CARDS -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-sky-500/20 shadow-md rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-600 mb-2 flex items-center gap-2">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+        </svg>
+        Colis en attente
+      </h3>
+      <p class="text-gray-700 text-3xl font-bold">12</p>
+    </div>
+
+    <div class="bg-sky-500/20 shadow-md rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-600 mb-2 flex items-center gap-2">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+          <path d="m20.765 7.982l.022.19l.007.194v7.268a2.5 2.5 0 0 1-1.099 2.07l-.15.095l-6.295 3.634l-.124.067l-.126.06v-8.99z"/>
+        </svg>
+        Colis livrés
+      </h3>
+      <p class="text-gray-700 text-3xl font-bold">34</p>
+    </div>
+
+    <div class="bg-sky-500/20 shadow-md rounded-lg p-6">
+      <h3 class="text-lg font-semibold text-blue-600 mb-2 flex items-center gap-2">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M12 6a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm-1.5 8a4 4 0 0 0-4 4 2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 4 4 0 0 0-4-4h-3Z"/>
+        </svg>
+        Utilisateurs
+      </h3>
+      <p class="text-gray-700 text-3xl font-bold">{{ user?.username || 'N/A' }}</p>
+    </div>
   </div>
 
-  <div class="menu">
-    <a routerLink="/users-colis" class="menu-item">
-      📦 Gestion des Utilisateurs Colis
+  <!-- BOUTON ACTION -->
+  <div class="mt-8">
+    <a routerLink="/users-colis" 
+       class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+      📦 Voir tous les colis
     </a>
   </div>
-
-  <button (click)="logout()" class="btn btn-danger">Déconnexion</button>
 </div>
